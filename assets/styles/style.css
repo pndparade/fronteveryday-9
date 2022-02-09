@@ -1,0 +1,491 @@
+:root {
+  --color-black: #000;
+  --color-dark: #303030;
+  --color-white: #ffffff;
+
+  --font-size-base: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  height: 1px;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--font-size-base);
+}
+
+.button {
+  appearance: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  width: 115px;
+  height: 39px;
+  border-radius: 28px;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button.is-open .button__icon{
+  transform: rotate(180deg);
+}
+
+.button:hover .button__icon {
+  background-color: #999;
+}
+
+.button:focus-visible {
+  outline: 2px dashed #fff;
+}
+
+.button span {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: .5;
+}
+
+.button__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.button__icon svg {
+  width: 12px;
+  height: 8px;
+}
+
+.clock {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100%;
+  background-color: #333;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  color: var(--color-white);
+}
+
+.clock.is-open .clock__blockquote {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  margin-bottom: 0;
+  transform: translate(0, -20px);
+}
+
+.clock.is-open .clock__info{
+  height: auto;
+}
+
+.clock._day {
+  background-image: url('../images/day-bg.jpg');
+}
+
+.clock._day .clock__time-message::before {
+  background-image: url('../images/day.svg');
+}
+
+.clock._day .clock__info {
+  background-color: rgba(255,255,255,0.5);
+  color: var(--color-dark);
+}
+
+.clock._day .clock__info-list::after {
+  border-left: 1px solid var(--color-dark);
+}
+
+.clock._night {
+  background-image: url('../images/night-bg.jpg');
+}
+
+.clock._night .clock__time-message::before {
+  background-image: url('../images/night.svg');
+}
+
+.clock._night .clock__info {
+  background-color: rgba(0,0,0,0.5);
+  color: var(--color-white);
+}
+
+.clock._night .clock__info-list::after {
+  border-left: 1px solid var(--color-white);
+}
+
+.clock__main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 32px 26px 40px;
+  transition: padding 0.3s ease;
+}
+
+.clock__blockquote {
+  display: flex;
+  align-items: flex-start;
+  max-width: 575px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.25s linear;
+}
+
+.clock__blockquotes-button {
+  appearance: none;
+  border: none;
+  padding: 0;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  opacity: .5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-left: 5px;
+  transition: opacity 0.2s ease;
+}
+
+.clock__blockquotes-button:hover {
+  opacity: 1;
+}
+
+.clock__blockquotes-button:focus-visible {
+  outline: 2px dashed #fff;
+  opacity: 1;
+}
+
+.clock__blockquote-text {
+  font-size: 12px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.clock__blockquote-text p {
+  margin: 0 0 8px;
+}
+
+.clock__blockquote-text p::before {
+  content: '“';
+}
+
+.clock__blockquote-text p::after {
+  content: '”';
+}
+
+.clock__blockquote-text cite {
+  font-weight: 700;
+  font-style: normal;
+}
+
+.clock__main-bottom {
+  align-self: end;
+}
+
+.clock__time {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.clock__time-message {
+  font-size: 12px;
+  line-height: 25px;
+  letter-spacing: 3px;
+  width: 100%;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-left: 40px;
+  position: relative;
+}
+
+.clock__time-message::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+}
+
+.clock__time-message-full {
+  display: none;
+}
+
+.clock__time-counter {
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: -3px;
+  font-weight: 700;
+}
+
+.clock__time-type {
+  font-size: 15px;
+  line-height: 32px;
+  font-weight: 300;
+  margin-left: 5px;
+  align-self: flex-end;
+}
+
+.clock__time-place {
+  font-size: 12px;
+  line-height: 28px;
+  letter-spacing: 3px;
+  width: 100%;
+  text-transform: uppercase;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.clock__toggle {
+  margin-top: 36px;
+}
+
+.clock__info {
+  overflow: hidden;
+  height: 0;
+  backdrop-filter: blur(40px);
+  transition: height 0.3s ease;
+}
+
+.clock__info-wrapper {
+  padding: 48px 26px;
+}
+
+.clock__info-list {
+  margin: 0;
+}
+
+.clock__info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.clock__info-item:last-child {
+  margin-bottom: 0;
+}
+
+.clock__info-item dt {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.clock__info-item dd {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  margin-left: 10px;
+  text-align: right;
+}
+
+.clock__info-item dd span {
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 375px) {
+  .clock__time-counter {
+    font-size: 100px;
+  }
+
+  .clock__time-message,
+  .clock__time-place {
+    font-size: 15px;
+  }
+
+  .clock__time-type {
+    line-height: 38px;
+  }
+
+  .clock__toggle {
+    margin-top: 48px;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .button {
+    width: 146px;
+    height: 56px;
+    padding: 0 9px;
+  }
+
+  .button span {
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 5px;
+  }
+  
+  .button__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .clock__main {
+    padding: 80px 64px 64px;
+  }
+
+  .clock__blockquote-text {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .clock__blockquote-text p {
+    margin-bottom: 12px;
+  }
+
+  .clock__time-counter {
+    font-size: 175px;
+    letter-spacing: -4px;
+  }
+
+  .clock__time-message,
+  .clock__time-place {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .clock__time-message-full {
+    display: inline;
+  }
+
+  .clock__time-type {
+    font-size: 32px;
+    line-height: 70px;
+    margin-left: 10px;
+  }
+
+  .clock__toggle {
+    margin-top: 80px;
+  }
+
+  .clock__info-wrapper {
+    padding: 119px 64px;
+  }
+  
+  .clock__info-list {
+    display: grid;
+    grid-template-columns: auto minmax(35%, min-content);
+    column-gap: 48px;
+    row-gap: 48px;
+  }
+
+  .clock__info-item {
+    margin-bottom: 0;
+    display: block;
+    min-width: 40%;
+  }
+
+  .clock__info-item dt {
+    font-size: 13px;
+    line-height: 28px;
+    letter-spacing: 2px;
+  }
+  
+  .clock__info-item dd {
+    font-size: 40px;
+    line-height: 48px;
+    text-align: left;
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .clock__main {
+    padding: 56px 64px 64px;
+  }
+
+  .clock__main-bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .clock__time {
+    flex-grow: 1;
+  }
+
+  .clock__toggle {
+    flex-shrink: 0;
+    margin-top: 0;
+    align-self: flex-end;
+  }
+
+  .clock__info-wrapper {
+    padding-top: 74px;
+    padding-bottom: 74px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .clock__main {
+    padding: 56px 85px;
+  }
+
+  .clock__info-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0;
+    position: relative;
+  }
+
+  .clock__info-list::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    opacity: .25;
+  }
+
+  .clock__info-item:nth-child(2n) {
+    padding-left: 100px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .clock.is-open .clock__main {
+    padding-bottom: 56px;
+  }
+
+  .clock__main {
+    padding: 56px 165px 100px;
+  }
+
+  .clock__info-wrapper {
+    padding: 74px 165px;
+  }
+
+  .clock__info-item dt {
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+  
+  .clock__info-item dd {
+    font-size: 56px;
+    line-height: 68px;
+  }
+}

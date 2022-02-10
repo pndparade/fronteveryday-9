@@ -122,6 +122,32 @@ function getTimezone() {
   return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
+function convertMinutes(m) {
+  let fulltime;
+
+  if(m % 60 != 0) {
+    fulltime = Math.floor(m / 60) + ':' + (m % 60);
+  } else {
+    fulltime = m / 60;
+  }
+
+  return fulltime;
+}
+
+function getTimezoneOffset() {
+  let offsetText = 'UTC';
+  let offset = String(date.getTimezoneOffset());
+  
+  if(offset.match(/^-/)) {
+    offset = offset.slice(1);
+    offsetText += '+' + convertMinutes(offset);
+  } else {
+    offsetText += '-' + convertMinutes(offset);
+  }
+
+  return offsetText;
+}
+
 function getWeekPassed() {
   const current = date.getTime();
   const previous = new Date(date.getFullYear(), 0, 1);
@@ -147,9 +173,7 @@ if(themeIndex < 2) {
 }
 
 document.querySelector('.js-clock-time').textContent = getCurrentTime();
-if(isBST(date)) {
-  document.querySelector('.js-clock-bst').textContent = 'BST';
-}
+document.querySelector('.js-clock-timezone-offset').textContent = getTimezoneOffset();
 document.querySelector('.js-clock-timezone').textContent = getTimezone();
 document.querySelector('.js-clock-days-passed').textContent = getDaysPassed();
 document.querySelector('.js-clock-week-passed').textContent = getWeekPassed();
